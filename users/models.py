@@ -7,6 +7,6 @@ class Profile(models.Model):
     '''
     user = models.OneToOneField(User,on_delete=models.CASCADE)
     profile_pic = models.ImageField(default='default.jpg',upload_to='profile_pics')
-    number = models.IntegerField()
-    id_number = models.IntegerField()
-    bio = models.TextField()
+    number = models.IntegerField(default=0)
+    id_number = models.IntegerField(default=0)
+    bio = models.TextField(blank=True)
