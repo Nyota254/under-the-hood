@@ -10,3 +10,6 @@ class Profile(models.Model):
     number = models.IntegerField(default=0)
     id_number = models.IntegerField(default=0)
     bio = models.TextField(blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
