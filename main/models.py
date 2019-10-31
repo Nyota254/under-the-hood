@@ -28,6 +28,7 @@ class Car(models.Model):
     '''
     This class will contain the specific details of a certain car
     '''
+    car_image = models.ImageField(upload_to='car_images',blank=True)
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
     registration_number = models.CharField(max_length=10)
     car_type = models.ForeignKey(Car_Type,on_delete=models.CASCADE)

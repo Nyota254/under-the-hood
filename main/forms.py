@@ -29,7 +29,7 @@ class Car_Upload_Form(forms.ModelForm):
     '''
     class Meta:
         model = Car
-        fields = ('registration_number','car_type','model','mileage','date_bought')
+        fields = ('car_image','registration_number','car_type','model','mileage','date_bought')
 
 class Part_Upload_Form(forms.ModelForm):
     '''
