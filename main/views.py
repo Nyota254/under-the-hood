@@ -34,3 +34,77 @@ def car_type_upload(request):
         "form":form
     }
     return render(request,"main/car_type_upload_form.html",context)
+
+def car_model_addition(request):
+    '''
+    This view will upload the car model type
+    '''
+    if request.method == 'POST':
+        form = Car_Model_Form(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(car_model_addition)
+    else:
+        form = Car_Model_Form()
+    context = {
+        "title":"upload car model",
+        "form":form
+    }
+    return render(request,"main/car_model_upload_form",context)
+
+def car_parts_upload(request):
+    '''
+    This view will enable upload of parts
+    '''
+    if request.method == 'POST':
+        form = Part_Upload_Form(request.POST,request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect(car_parts_upload)
+    else:
+        form = Part_Upload_Form()
+    
+    context = {
+        "title":"car part upload",
+        "form":form
+    }
+    return redirect(request,"main/car_part_upload.html",context)
+
+def car_upload(request):
+    '''
+    This view will handle the specific car upload
+    '''
+    if request.method == 'POST':
+        form = Car_Upload_Form(request.POST,request.FILES)
+        if form.is_valid():
+            car = form.save(commit=False)
+            car.owner = request.user
+            car.save()
+            return redirect(car_upload)
+    else:
+        form = Car_Upload_Form()
+    
+    context = {
+        "title":"car upload",
+        "form":form
+    }
+    return render(request,"main/car_upload_form.html",context)
+
+def car_problem_upload(request):
+    '''
+    This view will handle the form for uploading a car problem
+    '''
+    if request.method == 'POST':
+        form = Problem_Upload(request.user,request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(car_problem_upload)
+    else:
+        form = Problem_Upload()
+    
+    context = {
+        "title":"car problem upload",
+        "form":form
+    }
+
+    return render(request,"main/car_problem_upload.html",context)
