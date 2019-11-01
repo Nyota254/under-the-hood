@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.contrib.auth.decorators import login_required
 from .forms import (
     Car_Type_Form,
     Car_Upload_Form,
@@ -16,7 +17,7 @@ def index_view(request):
     }
     return render(request,'main/index.html',context)
 
-
+@login_required
 def car_type_upload(request):
     '''
     This view function will help in uploading of a car type
@@ -35,6 +36,7 @@ def car_type_upload(request):
     }
     return render(request,"main/car_type_upload_form.html",context)
 
+@login_required
 def car_model_addition(request):
     '''
     This view will upload the car model type
@@ -50,8 +52,9 @@ def car_model_addition(request):
         "title":"upload car model",
         "form":form
     }
-    return render(request,"main/car_model_upload_form",context)
+    return render(request,"main/car_model_upload_form.html",context)
 
+@login_required
 def car_parts_upload(request):
     '''
     This view will enable upload of parts
@@ -70,6 +73,7 @@ def car_parts_upload(request):
     }
     return redirect(request,"main/car_part_upload.html",context)
 
+@login_required
 def car_upload(request):
     '''
     This view will handle the specific car upload
@@ -90,6 +94,7 @@ def car_upload(request):
     }
     return render(request,"main/car_upload_form.html",context)
 
+@login_required
 def car_problem_upload(request):
     '''
     This view will handle the form for uploading a car problem
