@@ -1,0 +1,41 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h2 class="heading">{{ car_type.car_type_name }}</h2>
+    <p>{{ car_type.description }}</p>
+    
+    <h1 class="heading">Problems Associated</h1>
+
+    
+    <p>Filter By Model</p>
+    <form action="{#% url 'filter-model-type' %}" class="form-style">
+            <div class="form-group">
+                <label for="CarModel">Car model filter</label>
+                <select id="CarModel" class="form-control" name="carmodel">
+                    {% for car_model in car_models %}
+                    <option>{{ car_model.car_model_name }} :Version {{ car_model.verson }}</option>
+                    {% endfor %}
+                </select><br>
+                <button class="btn btn-outline-primary" type="submit">Filter</button>
+            </div>
+    </form>
+    <div class="row">
+    {% for problem in car_problems %}
+    <div class="col-md-4">
+    <div class="card" style="width: 18rem;">
+            <img src="{{ problem.car.car_image.url }}" class="card-img-top" alt="{{ problem.car.model.car_model_name }} image">
+            <div class="card-body">
+              <h5 class="card-title">Problem: {{ problem.problem_name }}</h5>
+              <p class="card-text"><strong>Descrition:</strong>  {{ problem.problem_description }}</p>
+              <p class="card-text"><strong>Car Type:</strong> {{ problem.car.model.car_model_name }} Version:{{ problem.car.model.verson }}</p>
+              <!-- <a href="#" class="btn btn-primary">See car details</a> Future Implementation-->
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        </div>
+</div>
+
+{% endblock %}

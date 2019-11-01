@@ -30,8 +30,9 @@ def car_type_upload(request):
     This view function will help in uploading of a car type
     '''
     car_types = Car_Type.objects.all()
+    # car_models = Car_Model.objects.all()
     if request.method == 'POST':
-        form = Car_Type_Form(request.POST)
+        form = Car_Type_Form(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             return redirect(car_type_upload)
@@ -41,7 +42,8 @@ def car_type_upload(request):
     context = {
         "title":"upload car type",
         "form":form,
-        "car_types":car_types
+        "car_types":car_types,
+        # "car_models":car_models
     }
     return render(request,"main/car_type_upload_form.html",context)
 
@@ -126,3 +128,34 @@ def car_problem_upload(request):
     }
 
     return render(request,"main/car_problem_upload.html",context)
+
+@login_required
+def data_query(request):
+    '''
+    Will house the functionality searching for the data that one wants
+    '''
+    car_types = Car_Type.objects.all()
+
+    context = {
+        "title":"Data center",
+        "car_types":car_types
+    }
+    return render(request,"main/data_query.html",context)
+
+@login_required
+def car_type_filter(request):
+    '''
+    Will render the page with the cartype so as to be able to search for specific model car
+    '''
+    if 'car' in request.GET and request.GET.get('car'):
+        filterd_car = request.GET.get('car')
+        car_type = Car_Type.objects.filter(car_type_name__icontains=filterd_car)
+        car_models = Car_Model.objects.filter(car_type__car_type_name__icontains=filterd_car)
+        car_problems = Problem.objects.filter(car__car_type__car_type_name__icontains=filterd_car)
+    context = {
+        "title":"car type",
+        "car_type":car_type,
+        "car_models":car_models,
+        "car_problems":car_problems
+    }
+    return render(request,"main/car_type_filter.html",context)

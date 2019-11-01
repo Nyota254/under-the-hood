@@ -1,0 +1,59 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+    <div class="container">
+        <div>
+            <h1 class="text-center heading">Data Center</h1><hr>
+            <h2 class="heading">Description</h2><hr>
+            <p>This page is all about the data you want may it be specific car data general data or summary data</p>
+        </div>
+        <h2 class="heading">Data and analytics</h2><hr>
+
+        <h3 class="heading">Filter For Data Results</h3><hr>
+        <div class="row">
+            <div class="col-md-4">
+                <h4 class="heading">Filter Based On Car Type</h4>
+                <form action="{% url 'filter-car-type' %}" class="form-style">
+                        <div class="form-group">
+                            <label for="CarFilter">Car data filter</label>
+                            <select id="CarFilter" class="form-control" name="car">
+                                {% for car_type in car_types %}
+                                <option>{{ car_type.car_type_name }}</option>
+                                {% endfor %}
+                            </select><br>
+                            <button class="btn btn-outline-primary" type="submit">Filter</button>
+                        </div>
+                </form>
+            </div>
+
+            <div class="col-md-4">
+                    <h4 class="heading">Search By Owner Or Garage</h4>
+
+            </div>
+
+            <div class="col-md-4">
+
+            </div>
+        </div>
+        <h3 class="heading">Cars we have data on</h3><hr>
+        <div class="row">
+        {% for car_type in car_types %}
+        <div class="col-md-4">
+                <div class="card" style="width: 18rem;">
+                        <img class="card-img-top" src="{{ car_type.car_type_logo.url }}" alt="{{car_type.car_type_logo.url}}">
+                        <div class="card-body">
+                          <h5 class="card-title">{{ car_type.car_type_name }}</h5>
+                          <h6>Car Models Available</h6>
+                          {% for car_model in car_type.car_model_set.all %}
+                                <p class="card-text">{{ forloop.counter }}. {{ car_model.car_model_name }} version {{ car_model.verson }}</p>
+                        {% endfor %}
+                          <!-- <a href="#" class="btn btn-primary">Go somewhere</a> future implementation data on the car type-->
+                        </div>
+                      </div>
+        </div>
+        {% endfor %}
+    </div><hr>
+    </div>
+
+{% endblock %}

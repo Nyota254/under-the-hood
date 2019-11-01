@@ -6,6 +6,8 @@ from .views import (
     car_parts_upload,
     car_upload,
     car_problem_upload,
+    data_query,
+    car_type_filter,
 )
 
 urlpatterns = [
@@ -14,5 +16,7 @@ urlpatterns = [
     re_path('^UploadCarModel/$',car_model_addition,name="upload-car-model"),
     re_path('^CarPartUpload/$',car_parts_upload,name="upload-car-part"),
     re_path('^CarUpload/$',car_upload,name="car-upload"),
-    re_path('^CarProplemUpload/$',car_problem_upload,name="car-problem-upload")
+    re_path('^CarProplemUpload/$',car_problem_upload,name="car-problem-upload"),
+    re_path('^DataQuery/$',data_query,name="data-query"),
+    re_path('^filtercartype/$',car_type_filter,name="filter-car-type")
 ]
