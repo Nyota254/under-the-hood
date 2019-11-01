@@ -71,7 +71,7 @@ def car_parts_upload(request):
         "title":"car part upload",
         "form":form
     }
-    return redirect(request,"main/car_part_upload.html",context)
+    return render(request,"main/car_part_upload.html",context)
 
 @login_required
 def car_upload(request):
@@ -105,7 +105,7 @@ def car_problem_upload(request):
             form.save()
             return redirect(car_problem_upload)
     else:
-        form = Problem_Upload()
+        form = Problem_Upload(request.user)
     
     context = {
         "title":"car problem upload",
