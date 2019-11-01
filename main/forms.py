@@ -19,9 +19,10 @@ class Car_Model_Form(forms.ModelForm):
     '''
     Form for uploading the car model from a car type
     '''
+    car_type = forms.ModelChoiceField(queryset=Car_Type.objects.all())
     class Meta:
         model = Car_Model
-        fields = ('car_model_image','car_model_name','verson','date_realised')
+        fields = ('car_model_image','car_type','car_model_name','verson','date_realised')
 
 class Car_Upload_Form(forms.ModelForm):
     '''
