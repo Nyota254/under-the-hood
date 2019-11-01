@@ -14,7 +14,42 @@ body {
 
 /*********************************** Index Page Styles **********************************************/
 
+#index-landing {
+    background-image: url(../images/car_background.jpg);
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+}
 
+#overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+}
 
+#index-placing {
+    padding-top: 250px;
+    color: white;
+    font-family: 'Satisfy', cursive;
+    font-size: 30px;
+}
+
+.heading {
+    font-family: 'Satisfy', cursive;
+}
+
+hr{
+    background-color: black;
+}
+
+#how-it-works-image {
+    background-image: url(../images/mechanic.jpg);
+    height: 100vh;
+    background-size: cover;
+}
+
+#how-it-works-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100vh;
+}
 
 /*********************************** End of Index Page Styles ***************************************/
