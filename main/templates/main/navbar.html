@@ -23,13 +23,21 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{ url 'upload-car-model' }">
+                <a class="nav-link" href="{% url 'upload-car-model' %}">
                     <i class=""></i> Upload Car Model
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class=""></i> link</a>
+                <a class="nav-link" href="{% url 'upload-car-part' %}">
+                    <i class=""></i> Upload Car Part</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'car-problem-upload' %}">
+                    <i class=""></i>Upload Car Problem</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'car-upload' %}">
+                    <i class=""></i>Upload Car</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
