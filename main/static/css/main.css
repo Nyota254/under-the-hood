@@ -51,5 +51,9 @@ hr{
     background-color: rgba(0, 0, 0, 0.7);
     height: 100vh;
 }
+#how-it-works-background {
+    background-color: blue;
+    height: 100vh;
+}
 
 /*********************************** End of Index Page Styles ***************************************/

@@ -7,6 +7,13 @@ from .forms import (
     Part_Upload_Form,
     Problem_Upload
 )
+from .models import (
+    Car_Type,
+    Car_Model,
+    Car,
+    Part,
+    Problem
+)
 
 def index_view(request):
     '''
@@ -22,6 +29,7 @@ def car_type_upload(request):
     '''
     This view function will help in uploading of a car type
     '''
+    car_types = Car_Type.objects.all()
     if request.method == 'POST':
         form = Car_Type_Form(request.POST)
         if form.is_valid():
@@ -32,7 +40,8 @@ def car_type_upload(request):
     
     context = {
         "title":"upload car type",
-        "form":form
+        "form":form,
+        "car_types":car_types
     }
     return render(request,"main/car_type_upload_form.html",context)
 
@@ -41,6 +50,7 @@ def car_model_addition(request):
     '''
     This view will upload the car model type
     '''
+    car_models = Car_Model.objects.all()
     if request.method == 'POST':
         form = Car_Model_Form(request.POST,request.FILES)
         if form.is_valid():
@@ -50,7 +60,8 @@ def car_model_addition(request):
         form = Car_Model_Form()
     context = {
         "title":"upload car model",
-        "form":form
+        "form":form,
+        "car_models":car_models
     }
     return render(request,"main/car_model_upload_form.html",context)
 
@@ -59,6 +70,7 @@ def car_parts_upload(request):
     '''
     This view will enable upload of parts
     '''
+    car_parts = Part.objects.all()
     if request.method == 'POST':
         form = Part_Upload_Form(request.POST,request.FILES)
         if form.is_valid():
@@ -69,7 +81,8 @@ def car_parts_upload(request):
     
     context = {
         "title":"car part upload",
-        "form":form
+        "form":form,
+        "car_parts":car_parts
     }
     return render(request,"main/car_part_upload.html",context)
 
