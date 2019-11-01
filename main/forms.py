@@ -13,7 +13,7 @@ class Car_Type_Form(forms.ModelForm):
     '''
     class Meta:
         model = Car_Type
-        fields = ('car_type_name','description')
+        fields = ('car_type_logo','car_type_name','description')
 
 class Car_Model_Form(forms.ModelForm):
     '''

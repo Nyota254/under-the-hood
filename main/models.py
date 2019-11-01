@@ -5,6 +5,7 @@ class Car_Type(models.Model):
     '''
     This class will hold the diffrent types of cars their are e.g(Toyota,Subaru,Audi)
     '''
+    car_type_logo = models.ImageField(upload_to="car_type_logos",default="default_logo.jpg")
     car_type_name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
 
@@ -28,7 +29,7 @@ class Car(models.Model):
     '''
     This class will contain the specific details of a certain car
     '''
-    car_image = models.ImageField(upload_to='car_images',blank=True)
+    car_image = models.ImageField(upload_to='car_images',blank=True,default="default_car.jpg")
     owner = models.ForeignKey(User,on_delete=models.CASCADE)
     registration_number = models.CharField(max_length=10)
     car_type = models.ForeignKey(Car_Type,on_delete=models.CASCADE)
